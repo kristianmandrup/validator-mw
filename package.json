@@ -1,20 +1,21 @@
 {
-  "name": "application-name",
+  "name": "validator-mw",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node middleware/validator.js"
   },
   "dependencies": {
-    "express": "3.4.4",
-    "jquery":  "*",
-    "coffee-script": "*",
-    "namespace": "1.0.0",
-    "inflection": "*",
-    "racer": "*",
-    "rubyjs": "*",
-    "lgtm":  "*",
-    "jade": "*",
-    "stylus": "*"
-  }
+    "lodash":           "*",
+    "coffee-script":    "*",
+    "LiveScript":       "*",
+    "inflection":       "*",
+    "racer":            "*",
+    "rubyjs":           "*",
+    "lgtm":             "*"
+  },
+  "devDependencies": {
+    "mocha":            "*",
+    "should":           "*",
+    "chai":             "*"
+   }
 }

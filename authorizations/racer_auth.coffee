@@ -1,3 +1,8 @@
+# VERY experimental pseudo code mostly
+# See authorize-mw for real middleware code!
+
+# The following are mainly some ideas for intgration with Angular.js and Racer.js
+
 racer = require 'racer'
 
 DefaultUser = ->
@@ -18,14 +23,14 @@ RacerModel = ->
 
   # ids is optional array of ids, if empty, do for all
   getAll: (model, ids) ->
-    $.extend {}, base,
+    _.extend {}, base,
       exec: ->
         mwRunner(action: 'getAll', model: model, ->
           racer.get(@collection)
         )
 
   get: (model, id) ->
-    $.extend {}, base,
+    _.extend {}, base,
       exec: ->
         mwRunner(action: 'getAll', model: model, ->
           racer.get(@collection + '.' + id);
@@ -33,7 +38,7 @@ RacerModel = ->
 
   getOwn: (model, id) ->
     self = @
-    $.extend {}, base,
+    _.extend {}, base,
       exec: ->
         obj = self.get(model, id).exec()
         if (obj.user && obj.user.id == @currentUser.id)
@@ -43,7 +48,7 @@ RacerModel = ->
 
   create: (model, data) ->
     self = @
-    $.extend{}, base,
+    _.extend {}, base,
       exec: ->
         mwRunner(action: 'create', model: model, ->
           # , data
@@ -51,7 +56,7 @@ RacerModel = ->
         )
 
   update: (model, id, data) ->
-    $.extend {}, base,
+    _.extend {}, base,
       exec: ->
         mwRunner(action: 'update one', model: model, ->
           racer.set(@collection + '.' + id, data);
@@ -59,7 +64,7 @@ RacerModel = ->
     # ids is optional array of ids, if empty, do for all
 
   updateAll: (model, ids, data) ->
-    $.extend {}, base,
+    _.extend {}, base,
       exec: ->
         mwRunner(action: 'update many', model: model, ->
           if ids.empty? then @updateList(@ids, @data) else @updateList(ids, data)
@@ -70,14 +75,14 @@ RacerModel = ->
       racer.set(@collection + '.' + id, data);
 
   delete: (model, id) ->
-    $.extend {}, base,
+    _.extend {}, base,
       exec: ->
         mwRunner(action: 'delete one', model: model, ->
           racer.delete(@collection + '.' + id);
         )
   # ids is optional array of ids, if empty, do for all
   deleteAll: (model, ids) ->
-    $.extend {}, base,
+    _.extend {}, base,
       exec: ->
         mwRunner(action: 'delete many', model: model, ->
           if ids.empty? then deleteAll() else deleteList(ids)

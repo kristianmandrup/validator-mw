@@ -1,10 +1,10 @@
-$ = require "jquery"
-type = require "../util/type"
+_ = require "lodash"
+type = require "../type"
 
 
 module.exports = (attributes) ->
   throw "Must be an object, was: #{attributes}" unless type(attributes) == 'object'
 
-  $.extend {
+  _.extend
     name: ''
-  }, attributes
+  , attributes

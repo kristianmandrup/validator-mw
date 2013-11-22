@@ -11,7 +11,8 @@
     "inflection":       "*",
     "racer":            "*",
     "rubyjs":           "*",
-    "lgtm":             "*"
+    "lgtm":             "*",
+    "middleware": "git://github.com/kristianmandrup/middleware.git"
   },
   "devDependencies": {
     "mocha":            "*",

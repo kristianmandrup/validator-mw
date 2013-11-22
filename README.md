@@ -1,8 +1,8 @@
-# Validations middleware
+# Validation middleware
 
-The middleware components to enable flexible validation on client or server js environments.
+Middleware components to enable flexible validation on client or server js environments.
 
-Relies on middleware project (update package.json)
+Relies on *middleware* project
 
 ## Validators
 

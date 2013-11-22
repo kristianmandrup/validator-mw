@@ -1,4 +1,4 @@
-_ = require "lodash" #
+_ = require "lodash"
 
 module.exports = (attributes) ->
   throw "Must be an object, was: #{attributes}" unless is-type 'Object', attributes

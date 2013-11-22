@@ -1,17 +1,26 @@
 {
-  "name": "validator-mw",
+  "name": "validation-mw",
   "version": "0.0.1",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kristianmandrup/validation-mw.git"
+  },
+  "keywords": [
+    "validator",
+    "validation",
+    "middleware"
+  ],
   "scripts": {
-    "start": "node middleware/validator.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "lodash":           "*",
-    "coffee-script":    "*",
     "LiveScript":       "*",
     "inflection":       "*",
     "rubyjs":           "*",
     "lgtm":             "*",
-    "middleware": "git://github.com/kristianmandrup/middleware.git"
+    "middleware":       "git://github.com/kristianmandrup/middleware.git"
   },
   "devDependencies": {
     "mocha":            "*",

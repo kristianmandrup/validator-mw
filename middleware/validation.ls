@@ -1,6 +1,6 @@
-LGTM = require 'lgtm'
+LGTM        = require 'lgtm'
 ModelRunner = require 'model_runner'
-Validator = require 'validator'
+Validator   = require 'validator'
 
 
 module.exports =  ->

@@ -9,7 +9,6 @@
     "coffee-script":    "*",
     "LiveScript":       "*",
     "inflection":       "*",
-    "racer":            "*",
     "rubyjs":           "*",
     "lgtm":             "*",
     "middleware": "git://github.com/kristianmandrup/middleware.git"

@@ -1,3 +1,6 @@
+# not needed in LiveScript, but keep for now
+# LiveScript has modules using .implements
+
 module.exports = class Mixin
   @use = (mixins...) ->
     for mixin in mixins

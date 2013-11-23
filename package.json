@@ -1,10 +1,10 @@
 {
-  "name": "validation-mw",
-  "version": "0.0.1",
-  "main": "./index.js",
+  "name":       "validation-mw",
+  "version":    "0.0.1",
+  "main":       "./index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kristianmandrup/validation-mw.git"
+    "url":  "https://github.com/kristianmandrup/validation-mw.git"
   },
   "keywords": [
     "validator",
@@ -15,16 +15,17 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "lodash":           "*",
-    "LiveScript":       "*",
-    "inflection":       "*",
-    "rubyjs":           "*",
-    "lgtm":             "*",
-    "middleware":       "git://github.com/kristianmandrup/middleware.git"
+    "lodash":       "*",
+    "LiveScript":   "*",
+    "inflection":   "*",
+    "rubyjs":       "*",
+    "prelude-ls":   "*",
+    "lgtm":         "*",
+    "middleware":    "git://github.com/kristianmandrup/middleware.git"
   },
   "devDependencies": {
-    "mocha":            "*",
-    "should":           "*",
-    "chai":             "*"
-   }
+    "mocha":        "*",
+    "should":       "*",
+    "chai":         "*"
+  }
 }

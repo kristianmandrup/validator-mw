@@ -1,7 +1,3 @@
-LGTM        = require 'lgtm'
-middleware  = require 'middleware'
-
-ModelRunner = middleware.ModelRunner
 Validator   = require './validator'
 
 module.exports =  class Validation
@@ -11,18 +7,19 @@ module.exports =  class Validation
     console.log "collection" @collection
     console.log "model" @model
 
-    validator = Validator.getFor @collection
     # default: can be customized to be context sensitive
-    validator.validate @data (err, result) ->
+    validator!.validate @data (err, result) ->
       # err is any Exception
-
       # result { "valid": false, "errors": { "firstName": [ ], "lastName": ["You must enter a last name."], "age": [ ] } }
 
       valid   = result['valid']
       errors  = result['errors']
-      errors  = localizedErrors errors if @localizeOn
+      errors  = @localizedErrors errors if @localizeOn
 
-      addErrors errors unless valid
+      @addErrors errors unless valid
+
+  validator: ->
+    @validator ||= Validator.getFor @collection
 
   # loop through error messages and use i18n!
   localizeOn: true

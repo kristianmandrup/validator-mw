@@ -4,7 +4,9 @@ middleware  = require 'middleware'
 ModelRunner = middleware.ModelRunner
 Validator   = require './validator'
 
-module.exports =  class Validation
+Debugger = require '../debugger'
+
+module.exports =  class Validation implements Debugger
   (@context) ->
 
   run: ->

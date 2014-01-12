@@ -1,6 +1,9 @@
-require! '../test_setup'
+rek      = require 'rekuire'
+requires = rek 'requires'
 
-Validation = require '../../middleware/validation'
+requires.test 'test_setup'
+
+Validation = requires.file 'middleware/validation'
 
 describe 'Validation', ->
   var validation, context

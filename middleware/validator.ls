@@ -1,6 +1,8 @@
 LGTM = require 'lgtm'
 
-module.exports = class Validator
+Debugger = require '../debugger'
+
+module.exports = class Validator implements Debugger
     # factory doubles as default validator (with no validation rules)
     # just wrap the LGTM validator!
     factory: ->

@@ -1,7 +1,9 @@
+rek      = require 'rekuire'
+requires = rek 'requires'
+
 requires.test 'test_setup'
 
 Validator = requires.file 'middleware/validator'
-
 
 profile-validator = requires.validator 'profile'
 user-validator    = requires.validator 'user'

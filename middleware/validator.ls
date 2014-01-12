@@ -1,6 +1,6 @@
 LGTM = require 'lgtm'
 
-module.exports = ->
+module.exports = class Validator
     # factory doubles as default validator (with no validation rules)
     # just wrap the LGTM validator!
     factory: ->

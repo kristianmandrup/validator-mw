@@ -1,5 +1,4 @@
-# middleware project needs index.ls file which exports Validator for this to work I think
-Validator = require 'middleware'.Validator
+Validator = require 'middleware/validator'
 
 Validator.createFor('user')
   .validates('username').using( (username) ->

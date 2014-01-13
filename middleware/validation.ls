@@ -1,19 +1,19 @@
 _           = require 'prelude-ls'
 lo          = require 'lodash'
-
 LGTM        = require 'lgtm'
 middleware  = require 'middleware'
 
-rek      = require 'rekuire'
-requires = rek 'requires'
+rek         = require 'rekuire'
+requires    = rek 'requires'
 
-ModelRunner = middleware.ModelRunner
+ModelMw     = require('model-mw').mw
 
 Validator   = requires.file 'middleware/validator'
 Debugger    = requires.file 'debugger'
 
-module.exports =  class Validation implements Debugger
+module.exports =  class Validation extends ModelMw implements Debugger
   (@context) ->
+    super ...
 
   run: ->
     return undefined if _.empty @context

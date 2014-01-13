@@ -23,6 +23,7 @@
     "prelude-ls":   "*",
     "lgtm":         "*",
     "rekuire":      "*",
+    "model-mw":     "git://github.com/kristianmandrup/model-mw.git",
     "middleware":   "git://github.com/kristianmandrup/middleware.git"
   },
   "devDependencies": {

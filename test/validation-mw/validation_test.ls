@@ -14,22 +14,38 @@ describe 'Validation', ->
   validation = (ctx) ->
     new Validation ctx
 
-  before ->
-    contexts.empty      := {}
-    validations.empty   := validation contexts.empty
+  context 'validation' ->
+    context 'empty context' ->
+      before ->
+        contexts.empty      := {}
+        validations.empty   := validation contexts.empty
+        validations.empty.debug-on!
 
-    validations.empty.debug-on!
+        subject := validations.empty
 
-  context 'validation with empty context' ->
-    before ->
-      subject := validations.empty
+      specify 'is Validation instance' ->
+        subject.constructor.should.eql Validation
 
-    specify 'is Validation instance' ->
-      subject.constructor.should.eql Validation
+      specify 'sets the context obj' ->
+        subject.context.should.eql contexts.empty
 
-    specify 'sets the context obj' ->
-      subject.context.should.eql contexts.empty
+      describe 'run' ->
+        specify 'should return false' ->
+          expect(subject.run!).to.be.undefined
 
-    describe 'run' ->
-      specify 'should return false' ->
-        expect(subject.run!).to.be.undefined
+    context 'model Book in context' ->
+      before ->
+        contexts.book       :=
+          model: 'Book'
+
+        validations.book   := validation contexts.book
+        validations.book.debug-on!
+
+        subject := validations.book
+
+      specify 'is Validation instance' ->
+        subject.constructor.should.eql Validation
+
+      describe 'collection' ->
+        specify 'is Book' ->
+          subject.collection.should.eql 'Book'

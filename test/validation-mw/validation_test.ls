@@ -6,17 +6,30 @@ requires.test 'test_setup'
 Validation = requires.file 'middleware/validation'
 
 describe 'Validation', ->
-  var validation, context
+  var subject
+
+  validations = {}
+  contexts    = {}
+
+  validation = (ctx) ->
+    new Validation ctx
 
   before ->
-    context = {}
-    validation := new Validation context
+    contexts.empty      := {}
+    validations.empty   := validation contexts.empty
 
-  specify 'creates a Validation instance' ->
-    validation.constructor.should.eql Validation
+    validations.empty.debug-on!
 
-  specify 'creates a validation obj' ->
-    validation.should.have.a.property 'context'
+  context 'validation with empty context' ->
+    before ->
+      subject := validations.empty
 
-  specify 'creates a validation obj' ->
-    validation.context.should.eql {}
+    specify 'is Validation instance' ->
+      subject.constructor.should.eql Validation
+
+    specify 'sets the context obj' ->
+      subject.context.should.eql contexts.empty
+
+    describe 'run' ->
+      specify 'should return false' ->
+        expect(subject.run!).to.be.undefined

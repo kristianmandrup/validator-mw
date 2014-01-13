@@ -1,15 +1,23 @@
+_           = require 'prelude-ls'
+lo          = require 'lodash'
+
 LGTM        = require 'lgtm'
 middleware  = require 'middleware'
 
-ModelRunner = middleware.ModelRunner
-Validator   = require './validator'
+rek      = require 'rekuire'
+requires = rek 'requires'
 
-Debugger = require '../debugger'
+ModelRunner = middleware.ModelRunner
+
+Validator   = requires.file 'middleware/validator'
+Debugger    = requires.file 'debugger'
 
 module.exports =  class Validation implements Debugger
   (@context) ->
 
   run: ->
+    return undefined if _.empty @context
+
     @debug "collection" @collection
     @debug "model" @model
 
@@ -34,6 +42,8 @@ module.exports =  class Validation implements Debugger
   localizeOn: true
   localizeErrors: (errors) ->
     # TODO
-    console.log errors
+    @debug errors
   register: (name, _) ->
-    console.log "registering" name
+    @debug "registering" name
+
+lo.extend Validator, Debugger

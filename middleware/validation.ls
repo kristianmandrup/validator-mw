@@ -24,8 +24,9 @@ module.exports =  class Validation implements Debugger
     validator = Validator.getFor @collection
 
     @debug "validator" validator
+
     # default: can be customized to be context sensitive
-    validator.validate @data (err, result) ->
+    validator!.validate @data (err, result) ->
       # err is any Exception
 
       @debug "validation result" result
@@ -34,9 +35,12 @@ module.exports =  class Validation implements Debugger
 
       valid   = result['valid']
       errors  = result['errors']
-      errors  = localizedErrors errors if @localizeOn
+      errors  = @localizedErrors errors if @localizeOn
 
-      addErrors errors unless valid
+      @addErrors errors unless valid
+
+  validator: ->
+    @validator ||= Validator.getFor @collection
 
   # loop through error messages and use i18n!
   localizeOn: true

@@ -5,7 +5,8 @@ module.exports =
 
   debug: (msg) ->
     if @debugging
-      console.log @.constructor.display-name + ':'
+      constr = @.constructor.display-name || @.display-name
+      console.log constr + ':'
       console.log ...
 
   debug-on: ->

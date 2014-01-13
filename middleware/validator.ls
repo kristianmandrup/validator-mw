@@ -20,16 +20,27 @@ module.exports = class Validator implements Debugger
       unless _.is-type 'String', model
         throw Error "model must be a String, was: #{model}"
 
+      @@debug "factory-meth", factory-meth
+
       unless _.is-type 'Function', factory-meth
         throw Error "factory-meth must be a Function, was: #{factory-meth}"
 
       @@validators[model] = @@factory!
 
-      validator = factory-meth.call @@validators[model]
-      if validator is undefined
-        @@debug "factory-meth", factory-meth
-        throw Error "Validator can't be built - factory method returned undefined"
+      validator-factory = factory-meth.call @@validators[model]
 
-      @@validators[model] = validator.build!
+      @@debug 'validator-factory', validator-factory
+      if validator-factory is undefined
+        throw Error "Validator factory is undefined"
+
+      unless validator-factory.build
+        throw Error "Validator can't be built - has no build() method"
+
+      validator = validator-factory.build!
+
+      @@debug 'validator', validator
+
+      @@validators[model] = validator
+      validator
 
 lo.extend Validator, Debugger

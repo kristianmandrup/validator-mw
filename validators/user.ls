@@ -3,5 +3,5 @@ requires = rek 'requires'
 
 Validator = requires.file 'middleware/validator'
 
-Validator.createFor 'user', ->
+module.exports = Validator.createFor 'user' ->
   @validates('username').required("You must have a user name.")

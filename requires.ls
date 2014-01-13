@@ -13,8 +13,8 @@ file-level = 0
 test-base-path = ->
   "test"
 
-validators-base-path = ->
-  "test"
+validator-base-path = ->
+  "validators"
 
 file-base-path = ->
   "."

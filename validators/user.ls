@@ -1,11 +1,7 @@
-Validator = require 'middleware/validator'
+rek      = require 'rekuire'
+requires = rek 'requires'
 
-Validator.createFor('user')
-  .validates('username').using( (username) ->
-    $.getJSON('/check-username', username: username)
-      .then(
-        (username) ->
-          !username.taken;
-      )
-  )
-.build
+Validator = requires.file 'middleware/validator'
+
+Validator.createFor 'user', ->
+  @validates('username').required("You must have a user name.")

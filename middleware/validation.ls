@@ -10,13 +10,17 @@ module.exports =  class Validation implements Debugger
   (@context) ->
 
   run: ->
-    console.log "collection" @collection
-    console.log "model" @model
+    @debug "collection" @collection
+    @debug "model" @model
 
     validator = Validator.getFor @collection
+
+    @debug "validator" validator
     # default: can be customized to be context sensitive
     validator.validate @data (err, result) ->
       # err is any Exception
+
+      @debug "validation result" result
 
       # result { "valid": false, "errors": { "firstName": [ ], "lastName": ["You must enter a last name."], "age": [ ] } }
 

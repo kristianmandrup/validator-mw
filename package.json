@@ -15,13 +15,15 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "lodash":       "*",
+    "lodash":       "~0.2",
+    "sugar":        "*",
     "LiveScript":   "*",
     "inflection":   "*",
     "rubyjs":       "*",
     "prelude-ls":   "*",
     "lgtm":         "*",
-    "middleware":    "git://github.com/kristianmandrup/middleware.git"
+    "rekuire":      "*",
+    "middleware":   "git://github.com/kristianmandrup/middleware.git"
   },
   "devDependencies": {
     "mocha":        "*",

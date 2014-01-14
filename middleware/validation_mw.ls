@@ -7,13 +7,17 @@ rek         = require 'rekuire'
 requires    = rek 'requires'
 
 ModelMw     = require('model-mw').mw
+ModelRunner = require('model-mw').runner
 
 Validator   = requires.file 'factory/validator'
 Debugger    = requires.file 'debugger'
 
 module.exports =  class ValidationMw extends ModelMw implements Debugger
   (@context) ->
-    super ...
+    unless @context.runner?
+      @context.runner = new ModelRunner @context
+
+    super @context
 
   run: ->
     return undefined if _.empty @context

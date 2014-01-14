@@ -56,6 +56,9 @@ module.exports =
   factory: (...paths) ->
     rek factory-path(paths)
 
+  fac: (...paths) ->
+    @factory paths
+
   middleware: (...paths) ->
     rek middleware-path(paths)
 

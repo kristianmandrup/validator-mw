@@ -1,9 +1,9 @@
-rek      = require 'rekuire'
-requires = rek 'requires'
+rek         = require 'rekuire'
+requires    = rek 'requires'
 
 requires.test 'test_setup'
 
-Validator = requires.fac 'factory/validator'
+Validator         = requires.fac 'validator'
 
 # Validator.debug-on!
 
@@ -11,8 +11,6 @@ profile-validator = requires.validator 'profile'
 user-validator    = requires.validator 'user'
 
 describe 'Validator' ->
-  validator = null
-
   specify 'creates a validator' ->
     Validator.should.have.property 'factory'
     Validator.should.have.property 'validators'

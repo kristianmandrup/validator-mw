@@ -1,15 +1,36 @@
-Validator   = require './validator'
+_           = require 'prelude-ls'
+lo          = require 'lodash'
+LGTM        = require 'lgtm'
+middleware  = require 'middleware'
 
-module.exports =  class Validation
+rek         = require 'rekuire'
+requires    = rek 'requires'
+
+ModelMw     = require('model-mw').mw
+
+Validator   = requires.file 'middleware/validator'
+Debugger    = requires.file 'debugger'
+
+module.exports =  class Validation extends ModelMw implements Debugger
   (@context) ->
+    super ...
 
   run: ->
-    console.log "collection" @collection
-    console.log "model" @model
+    return undefined if _.empty @context
+
+    @debug "collection" @collection
+    @debug "model" @model
+
+    validator = Validator.getFor @collection
+
+    @debug "validator" validator
 
     # default: can be customized to be context sensitive
     validator!.validate @data (err, result) ->
       # err is any Exception
+
+      @debug "validation result" result
+
       # result { "valid": false, "errors": { "firstName": [ ], "lastName": ["You must enter a last name."], "age": [ ] } }
 
       valid   = result['valid']
@@ -25,6 +46,8 @@ module.exports =  class Validation
   localizeOn: true
   localizeErrors: (errors) ->
     # TODO
-    console.log errors
+    @debug errors
   register: (name, _) ->
-    console.log "registering" name
+    @debug "registering" name
+
+lo.extend Validator, Debugger

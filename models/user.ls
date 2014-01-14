@@ -1,6 +1,8 @@
-_ = require "lodash"
+lo = require "lodash"
 
-module.exports = (attributes) ->
-  throw "Must be an object, was: #{attributes}" unless is-type 'Object', attributes
+module.exports = class User
+  (@attributes) ->
+    unless is-type 'Object', attributes
+      throw Error "Must be an object, was: #{attributes}"
 
-  _.extend {name: ''}, attributes
+    lo.extend @, attributes

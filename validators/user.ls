@@ -1,12 +1,7 @@
-# middleware project needs index.ls file which exports Validator for this to work I think
-Validator = require 'middleware'.Validator
+rek      = require 'rekuire'
+requires = rek 'requires'
 
-Validator.createFor('user')
-  .validates('username').using( (username) ->
-    $.getJSON('/check-username', username: username)
-      .then(
-        (username) ->
-          !username.taken;
-      )
-  )
-.build
+Validator = requires.file 'middleware/validator'
+
+module.exports = Validator.createFor 'user' ->
+  @validates('username').required("You must have a user name.")

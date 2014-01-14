@@ -18,11 +18,16 @@
   "dependencies": {
     "lodash":       "*",
     "sugar":        "*",    
+    "lodash":       "~0.2",
+    "sugar":        "*",
+    "LiveScript":   "*",
     "inflection":   "*",
     "rubyjs":       "*",
     "prelude-ls":   "*",
     "lgtm":         "*",
-    "model-mw":    "git://github.com/kristianmandrup/model-mw.git"
+    "rekuire":      "*",
+    "model-mw":     "git://github.com/kristianmandrup/model-mw.git",
+
   },
   "devDependencies": {
     "LiveScript":   "*",      

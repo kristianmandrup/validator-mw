@@ -31,6 +31,10 @@ factory-path = (...paths) ->
   upaths = underscore(...paths)
   ['factory', upaths].flatten!.join '/'
 
+middleware-path = (...paths) ->
+  upaths = underscore(...paths)
+  ['middleware', upaths].flatten!.join '/'
+
 
 module.exports =
   file-lv: (lvs) ->

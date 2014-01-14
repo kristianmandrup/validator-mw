@@ -26,7 +26,7 @@
     "prelude-ls":   "*",
     "lgtm":         "*",
     "rekuire":      "*",
-    "model-mw":     "git://github.com/kristianmandrup/model-mw.git",
+    "model-mw":     "git://github.com/kristianmandrup/model-mw.git#master"
 
   },
   "devDependencies": {

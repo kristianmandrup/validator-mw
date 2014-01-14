@@ -12,20 +12,24 @@
     "middleware"
   ],
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "make test"    
   },
   "dependencies": {
     "lodash":       "*",
-    "LiveScript":   "*",
+    "sugar":        "*",    
     "inflection":   "*",
     "rubyjs":       "*",
     "prelude-ls":   "*",
     "lgtm":         "*",
-    "middleware":    "git://github.com/kristianmandrup/middleware.git"
+    "model-mw":    "git://github.com/kristianmandrup/model-mw.git"
   },
   "devDependencies": {
+    "LiveScript":   "*",      
     "mocha":        "*",
     "should":       "*",
-    "chai":         "*"
+    "chai":         "*",
+    "grunt":        "~0.4.2",
+    "grunt-mocha-test": "~0.8.1"    
   }
 }

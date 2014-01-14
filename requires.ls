@@ -27,6 +27,10 @@ validator-path = (...paths) ->
   upaths = underscore(...paths)
   [validator-base-path!, upaths].flatten!.join '/'
 
+factory-path = (...paths) ->
+  upaths = underscore(...paths)
+  ['factory', upaths].flatten!.join '/'
+
 
 module.exports =
   file-lv: (lvs) ->
@@ -45,6 +49,16 @@ module.exports =
     paths.map (path) ->
       @validator path
 
+  factory: (...paths) ->
+    rek factory-path(paths)
+
+  middleware: (...paths) ->
+    rek middleware-path(paths)
+
+  # alias
+  mw: (path) ->
+    @middleware path
+
   fixture: (path) ->
     @test 'fixtures', path
 
@@ -52,12 +66,12 @@ module.exports =
   fix: (path) ->
     @fixture path
 
-  factory: (path) ->
+  test-factory: (path) ->
     @test 'factories', path
 
   # alias
-  fac: (path) ->
-    @factory path
+  test-fac: (path) ->
+    @test-factory path
 
   file: (path) ->
     rek [file-base-path!, path.underscore!].join '/'

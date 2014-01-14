@@ -8,10 +8,10 @@ requires    = rek 'requires'
 
 ModelMw     = require('model-mw').mw
 
-Validator   = requires.file 'middleware/validator'
+Validator   = requires.file 'factory/validator'
 Debugger    = requires.file 'debugger'
 
-module.exports =  class Validation extends ModelMw implements Debugger
+module.exports =  class ValidationMw extends ModelMw implements Debugger
   (@context) ->
     super ...
 

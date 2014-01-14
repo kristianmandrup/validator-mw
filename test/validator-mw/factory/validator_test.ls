@@ -3,7 +3,7 @@ requires = rek 'requires'
 
 requires.test 'test_setup'
 
-Validator = requires.file 'middleware/validator'
+Validator = requires.fac 'factory/validator'
 
 # Validator.debug-on!
 

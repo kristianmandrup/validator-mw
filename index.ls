@@ -1,3 +1,3 @@
 module.exports =
-  validator:  require './middleware/validator'
+  validator:  require './factory/validator'
   validation: require './middleware/validation'

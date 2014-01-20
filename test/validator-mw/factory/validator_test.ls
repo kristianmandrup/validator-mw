@@ -22,9 +22,23 @@ describe 'Profile validator' ->
     specify 'should be a Validator with a validate method' ->
       profile-validator.should.have.property 'validate'
 
+  # do actual test of validation via LGTM
+  describe 'validate' ->
+    context 'invalid profile' ->
+      specify 'should return false' ->
+
+    context 'valid profile' ->
+      specify 'should return false' ->
 
 describe 'User validator' ->
   describe 'created' ->
     specify 'should be a Validator with a validate method' ->
       user-validator.should.have.property 'validate'
 
+  # do actual test of validation via LGTM
+  describe 'validate' ->
+    context 'invalid profile' ->
+      specify 'should return false' ->
+
+    context 'valid profile' ->
+      specify 'should return false' ->

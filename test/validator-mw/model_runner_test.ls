@@ -57,7 +57,7 @@ describe 'Middleware' ->
         validations.user.debug-on!
 
         validations.user.run = ->
-          console.log 'data', @data
+          # console.log 'data', @data
           @abort! if @data.name is 'kris'
           true
 
@@ -84,7 +84,7 @@ describe 'Middleware' ->
         validations.user.debug-on!
 
         validations.user.run = ->
-          console.log 'data', @data
+          # console.log 'data', @data
           @abort! if @data.name is 'emily'
           true
 

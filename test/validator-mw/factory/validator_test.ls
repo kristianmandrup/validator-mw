@@ -17,28 +17,51 @@ describe 'Validator' ->
     Validator.should.have.property 'getFor'
     Validator.should.have.property 'createFor'
 
-describe 'Profile validator' ->
-  describe 'created' ->
-    specify 'should be a Validator with a validate method' ->
-      profile-validator.should.have.property 'validate'
+  users     = {}
+  profiles  = {}
 
-  # do actual test of validation via LGTM
-  describe 'validate' ->
-    context 'invalid profile' ->
-      specify 'should return false' ->
+  describe 'Profile validator' ->
+    describe 'created' ->
+      specify 'should be a Validator with a validate method' ->
+        profile-validator.should.have.property 'validate'
 
-    context 'valid profile' ->
-      specify 'should return false' ->
+    # do actual test of validation via LGTM
+    describe 'validate' ->
+      context 'invalid profile: no firstName' ->
+        before ->
+          profiles.invalid :=
+            first: ''
 
-describe 'User validator' ->
-  describe 'created' ->
-    specify 'should be a Validator with a validate method' ->
-      user-validator.should.have.property 'validate'
+        specify 'should return false' ->
+          profile-validator.validate(profiles.invalid).should.be.false
 
-  # do actual test of validation via LGTM
-  describe 'validate' ->
-    context 'invalid profile' ->
-      specify 'should return false' ->
+      context 'valid profile' ->
+        before ->
+          profiles.valid :=
+            first-name: 'yeah'
 
-    context 'valid profile' ->
-      specify 'should return false' ->
+        specify 'should return false' ->
+          profile-validator.validate(profiles.valid).should.be.true
+
+  describe 'User validator' ->
+    describe 'created' ->
+      specify 'should be a Validator with a validate method' ->
+        user-validator.should.have.property 'validate'
+
+    # do actual test of validation via LGTM
+    describe 'validate' ->
+      context 'invalid user: has no username' ->
+        before ->
+          users.valid :=
+            name: 'oops!'
+
+        specify 'should return false' ->
+          profile-validator.validate(profiles.invalid).should.be.true
+
+      context 'valid user: has username' ->
+        before ->
+          users.valid :=
+            username: 'goodie :)'
+
+        specify 'should return false' ->
+          profile-validator.validate(users.valid).should.be.true

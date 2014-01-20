@@ -17,6 +17,8 @@ describe 'Validator' ->
     Validator.should.have.property 'getFor'
     Validator.should.have.property 'createFor'
 
+  var valid
+
   users     = {}
   profiles  = {}
 
@@ -32,16 +34,22 @@ describe 'Validator' ->
           profiles.invalid :=
             first: ''
 
+          profile-validator.validate(profiles.invalid).then (result) ->
+            valid := result.valid
+
         specify 'should return false' ->
-          profile-validator.validate(profiles.invalid).should.be.false
+          valid.should.be.false
 
       context 'valid profile' ->
         before ->
           profiles.valid :=
             first-name: 'yeah'
 
-        specify 'should return false' ->
-          profile-validator.validate(profiles.valid).should.be.true
+          profile-validator.validate(profiles.valid).then (result) ->
+            valid := result.valid
+
+        specify 'should return true' ->
+          valid.should.be.true
 
   describe 'User validator' ->
     describe 'created' ->
@@ -55,13 +63,19 @@ describe 'Validator' ->
           users.valid :=
             name: 'oops!'
 
+          profile-validator.validate(users.valid).then (result) ->
+            valid := result.valid
+
         specify 'should return false' ->
-          profile-validator.validate(profiles.invalid).should.be.true
+          valid.should.be.false
 
       context 'valid user: has username' ->
         before ->
           users.valid :=
             username: 'goodie :)'
 
-        specify 'should return false' ->
-          profile-validator.validate(users.valid).should.be.true
+          user-validator.validate(users.valid).then (result) ->
+            valid := result.valid
+
+        specify 'should return true' ->
+          valid.should.be.true

@@ -12,36 +12,51 @@ ModelRunner = require('model-mw').runner
 Validator   = requires.file 'factory/validator'
 Debugger    = requires.file 'debugger'
 
+# RSVP        = require 'rsvp'
+Q           = require 'q'
+
+LGTM.configure 'defer', Q.defer
+
 module.exports =  class ValidationMw extends ModelMw implements Debugger
   (@context) ->
     unless @context.runner?
       @context.runner = new ModelRunner @context
 
     super @context
+    @valid = false
 
   run: ->
-    return undefined if _.empty @context
+    @debug "context" @context
+    return false if lo.is-empty @context
 
     @debug "collection" @collection
     @debug "model" @model
+    @debug "data" @data
 
     validator = Validator.getFor @collection
 
     @debug "validator" validator
 
+    self = @
+
     # default: can be customized to be context sensitive
-    validator!.validate @data (err, result) ->
-      # err is any Exception
+    promise = validator.validate(@data).then (result) ->
+        # err is any Exception
 
-      @debug "validation result" result
+        self.debug "validation result" result
 
-      # result { "valid": false, "errors": { "firstName": [ ], "lastName": ["You must enter a last name."], "age": [ ] } }
+        # result { "valid": false, "errors": { "firstName": [ ], "lastName": ["You must enter a last name."], "age": [ ] } }
 
-      valid   = result['valid']
-      errors  = result['errors']
-      errors  = @localizedErrors errors if @localizeOn
+        self.valid = result.valid
+        # errors  = result.errors
+        # errors  = @localizedErrors errors if self.localizeOn
 
-      @addErrors errors unless valid
+        # TODO: add to model-mw
+        #self.add-errors errors unless valid
+        # valid
+
+    promise.done (res) ->
+      console.log "done" res
 
   validator: ->
     @validator ||= Validator.getFor @collection
@@ -50,7 +65,8 @@ module.exports =  class ValidationMw extends ModelMw implements Debugger
   localizeOn: true
   localizeErrors: (errors) ->
     # TODO
-    @debug errors
+    errors
+
   register: (name, _) ->
     @debug "registering" name
 

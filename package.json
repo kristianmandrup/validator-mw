@@ -25,6 +25,7 @@
     "rubyjs":       "*",
     "prelude-ls":   "*",
     "lgtm":         "*",
+    "q":            "*",
     "rekuire":      "*",
     "middleware":   "git://github.com/kristianmandrup/middleware.git#master",
     "model-mw":     "git://github.com/kristianmandrup/model-mw.git#master"

@@ -37,10 +37,16 @@ describe 'Validation', ->
         subject.context.should.eql contexts.user
 
       describe 'run' ->
+        var run-res
+
         before ->
-          subject.run!
-        specify 'should return true' ->
-          expect(subject.valid).to.be.true
+          run-res = subject.run!
+
+        specify 'should return void' ->
+          expect(run-res).to.be.void
+
+        specify 'should set result to validation result - true' ->
+          expect(subject.result).to.be.true
 
     context 'model Book in context' ->
       var data

@@ -45,26 +45,27 @@ module.exports =  class ValidationMw extends ModelMw implements Debugger
 
         self.debug "validation result" result
 
-        # result { "valid": false, "errors": { "firstName": [ ], "lastName": ["You must enter a last name."], "age": [ ] } }
+        # result {
+        #   "valid": false,
+        #   "errors": { "firstName": [ ], "lastName": ["You must enter a last name."], "age": [ ] }
+        # }
 
-        self.valid = result.valid
-        # errors  = result.errors
-        # errors  = @localizedErrors errors if self.localizeOn
+        self.result = result.valid
+        errors  = result.errors
+        errors  = @localized-errors errors if @localize-on
 
         # TODO: add to model-mw
-        #self.add-errors errors unless valid
-        # valid
+        self.add-errors errors unless valid
 
-    promise.done (res) ->
-      console.log "done" res
 
   validator: ->
     @validator ||= Validator.getFor @collection
 
   # loop through error messages and use i18n!
-  localizeOn: true
-  localizeErrors: (errors) ->
+  localize-on: true
+
     # TODO
+  localize-errors: (errors) ->
     errors
 
   register: (name, _) ->

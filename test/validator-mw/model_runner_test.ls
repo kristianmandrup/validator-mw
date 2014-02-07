@@ -115,4 +115,4 @@ describe 'Middleware' ->
 
         describe 'results for ValidationMw' ->
           specify 'is true' ->
-            result.results['ValidationMw'].should.be.true
+            result.results['validation-mw'].should.be.true

@@ -15,17 +15,8 @@ full-path = (base, ...paths) ->
 test-path = (...paths) ->
   full-path 'test', ...paths
 
-validator-path = (...paths) ->
-  upaths = underscore(...paths)
-  ['.', 'validators', upaths].flatten!.join '/'
-
-factory-path = (...paths) ->
-  upaths = underscore(...paths)
-  ['.', 'factory', upaths].flatten!.join '/'
-
-middleware-path = (...paths) ->
-  upaths = underscore(...paths)
-  ['.', 'middleware', upaths].flatten!.join '/'
+lib-path = (...paths) ->
+  full-path 'lib', ...paths
 
 
 module.exports =
@@ -36,11 +27,7 @@ module.exports =
     require runner-path(...paths)
 
   validator: (...paths) ->
-    require validator-path(...paths)
-
-  validators: (...paths) ->
-    paths.map (path) ->
-      @validator path
+    @test 'validators', ...paths
 
   fixture: (path) ->
     @test 'fixtures', path
@@ -49,39 +36,45 @@ module.exports =
   fix: (path) ->
     @fixture path
 
-  factory: (...paths) ->
-    require factory-path(paths)
+  factory: (path) ->
+    @lib 'factory', path
 
-  fac: (...paths) ->
-    @factory paths
+  fac: (path) ->
+    @factory path
 
-  middleware: (...paths) ->
-    require middleware-path(paths)
+  middleware: (path) ->
+    @lib 'mw', path
 
   # alias
   mw: (path) ->
     @middleware path
 
+  lib: (...paths) ->
+    require lib-path(paths)
+
   file: (path) ->
-    require full-path('.', path)
+    require full-path(path)
 
   # m - alias for module
   m: (path) ->
     @file path
 
   files: (...paths) ->
+    self = @
     paths.flatten!.map (path) ->
-      @file path
+      self.file path
 
   fixtures: (...paths) ->
+    self = @
     paths.flatten!.map (path) ->
-      @fixture path
+      self.fixture path
 
   tests: (...paths) ->
+    self = @
     paths.flatten!.map (path) ->
-      @test path
+      self.test path
 
-
-
-
-
+  validators: (...paths) ->
+    self = @
+    paths.map (path) ->
+      self.validator path

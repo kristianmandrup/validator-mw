@@ -3,21 +3,20 @@ lo          = require 'lodash'
 LGTM        = require 'lgtm'
 middleware  = require 'middleware'
 
-rek         = require 'rekuire'
-requires    = rek 'requires'
+requires = require '../../requires'
 
 ModelMw     = require('model-mw').mw
 ModelRunner = require('model-mw').runner
 
-Validator   = requires.file 'factory/validator'
-Debugger    = requires.file 'debugger'
+Validator   = requires.fac 'validator'
+Debugger    = requires.lib 'debugger'
 
 # RSVP        = require 'rsvp'
 Q           = require 'q'
 
 LGTM.configure 'defer', Q.defer
 
-module.exports =  class ValidationMw extends ModelMw implements Debugger
+module.exports = class ValidationMw extends ModelMw implements Debugger
   (@context) ->
     unless @context.runner?
       @context.runner = new ModelRunner @context

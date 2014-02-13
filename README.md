@@ -2,18 +2,14 @@
 
 Middleware components to enable flexible validation on client or server js environments.
 
-Relies on *middleware* project
+Depends on *model-mw* project
 
-## Validators
+## Sample Validators
 
-Currently the validators folder contains two validators:
+The `test/fixtures/validators` folder contains sample validators:
 
-* profile validator (models/profile)
-* user validator (models/user)
-
-## Users
-
-See users folder
+* profile validator
+* user validator
 
 ## Testing
 

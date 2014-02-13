@@ -2,10 +2,9 @@ _       = require 'prelude-ls'
 lo      = require 'lodash'
 LGTM    = require 'lgtm'
 
-rek      = require 'rekuire'
-requires = rek 'requires'
+requires = require '../../requires'
 
-Debugger = requires.file 'debugger'
+Debugger = requires.lib 'debugger'
 
 module.exports = class Validator implements Debugger
     # factory doubles as default validator (with no validation rules)

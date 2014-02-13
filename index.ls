@@ -1,3 +1,5 @@
+requires = require './requires'
+
 module.exports =
-  validator:  require './factory/validator'
-  validation: require './middleware/validation'
+  validator:  requires.fac 'validator'
+  validation-mw: requires.mw  'validation_mw'

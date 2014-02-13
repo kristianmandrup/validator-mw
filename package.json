@@ -16,17 +16,11 @@
     "test": "make test"    
   },
   "dependencies": {
-    "lodash":       "*",
-    "sugar":        "*",    
-    "lodash":       "~0.2",
-    "sugar":        "*",
-    "LiveScript":   "*",
     "inflection":   "*",
     "rubyjs":       "*",
     "prelude-ls":   "*",
     "lgtm":         "*",
     "q":            "*",
-    "rekuire":      "*",
     "middleware":   "git://github.com/kristianmandrup/middleware.git#master",
     "model-mw":     "git://github.com/kristianmandrup/model-mw.git#master"
 

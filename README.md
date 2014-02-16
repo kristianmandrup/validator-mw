@@ -55,10 +55,11 @@ The result returned by `then(result) ->` is of the following format:
 ```
 
 
+### Localized errors
 
-Note: By setting `validator.locale-on = true` and implementing `localize-errors: (errors) ->` to map the errors into localized errors, you can
- ensure that the client sees localized errors. These will be available separately at `localized-errors` for the result set
- of the validator mw-component on the runner.
+By setting `validator.locale-on = true` and implementing `localize-errors: (errors) ->` to map the errors into localized errors, you can ensure that the client sees localized errors. These will be available separately as `localized-errors` for the result set of the validator mw-component on the runner.
+
+Example: `middleware.runner.results['validator']` should provide all the results of the validator registered with the name `'validator'`.
 
 Validation Mw example, rolling your own custom validation logic
 
@@ -85,10 +86,12 @@ validator = middleware('model', data: users.kris).use(validations.user)
 
 ## Sample Validators
 
-The `test/fixtures/validators` folder contains some sample validators:
+The [validators](https://github.com/kristianmandrup/validator-mw/tree/master/test/validators) folder contains some sample validators:
 
 * profile validator
 * user validator
+
+See the [LGTM](https://github.com/square/lgtm/wiki) wiki for more info on that particular API.
 
 ## Testing
 

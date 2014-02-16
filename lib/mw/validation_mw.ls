@@ -32,14 +32,12 @@ module.exports = class ValidationMw extends ModelMw implements Debugger
     @debug "model" @model
     @debug "data" @data
 
-    validator = Validator.getFor @collection
-
-    @debug "validator" validator
+    # @debug "validator" @validator
 
     self = @
 
     # default: can be customized to be context sensitive
-    promise = validator.validate(@data).then (result) ->
+    promise = @validator.validate(@data).then (result) ->
         # err is any Exception
 
         self.debug "validation result" result
@@ -50,15 +48,17 @@ module.exports = class ValidationMw extends ModelMw implements Debugger
         # }
 
         self.result = result.valid
-        errors  = result.errors
-        errors  = @localized-errors errors if @localize-on
 
-        # TODO: add to model-mw
-        self.add-errors errors unless valid
+        unless result.valid
+          errors  = result.errors
+          self.add-errors errors unless result.valid
 
+          if @localize-on
+            errors  = @localized-errors errors
+            self.add-localized-errors errors
 
   validator: ->
-    @validator ||= Validator.getFor @collection
+    Validator.get-for @collection
 
   # loop through error messages and use i18n!
   localize-on: true

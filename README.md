@@ -1,5 +1,7 @@
 # Validation middleware
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kristianmandrup/validator-mw.svg)](https://greenkeeper.io/)
+
 Middleware components to enable flexible validation on client or server js environments.
 
 Dependencies:  
